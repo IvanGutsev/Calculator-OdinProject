@@ -1,0 +1,69 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: gray;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(197, 197, 197);
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+main {
+    background-color: black;
+    color: #fff;
+    width: 400px;
+    height: 590px;
+    padding: 10px;
+}
+
+.display {
+    background-color: rgb(83, 83, 83);
+    padding: 10px;
+    height: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.buttons {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn {
+    border: none;
+    padding: 10px;
+}
+
+.numbers, .operators {
+    margin-top: 10px;
+    display: flex;
+    gap: 5px;
+    height: 200px;
+    flex-wrap: wrap;
+}
+
+.numbers button{
+flex-grow: 1;
+width: 100px;
+}
+
+.operators button {
+flex: 1;
+height: 95%;
+}
+
+.enter-btn {
+    display: flex;
+}
+
+.btn-enter {
+    flex: 1;
+}
+
