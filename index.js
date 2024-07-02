@@ -8,6 +8,14 @@ let buttons = document.querySelectorAll('button');
 // clean the display for good measure
 clearDisplay();
 
+buttons.forEach(button => {
+    button.addEventListener("click", function handleClick(event) {
+        button = event.target.innerHTML;
+        // this works for now
+        populateDisplay(button);
+    });
+})
+
 let canAddOperator = false;
 
 
