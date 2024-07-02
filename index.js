@@ -3,8 +3,12 @@ let operation = "";
 let secondNum = 0;
 let canAddNum = true;
 let display = document.querySelector(".display");
-let numbers = document.querySelectorAll('button');
+let buttons = document.querySelectorAll('button');
 
+// clean the display for good measure
+clearDisplay();
+
+let canAddOperator = false;
 
 
 function clearDisplay() {
@@ -39,4 +43,5 @@ function operate(num1, num2, operator) {
 }
 
 function populateDisplay(number) {
+    display.innerHTML += number;
 }
