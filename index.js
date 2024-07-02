@@ -8,6 +8,7 @@ let buttons = document.querySelectorAll('button');
 // clean the display for good measure
 clearDisplay();
 
+let canAddOperator = false;
 buttons.forEach(button => {
     button.addEventListener("click", function handleClick(event) {
         button = event.target.innerHTML;
@@ -16,7 +17,6 @@ buttons.forEach(button => {
     });
 })
 
-let canAddOperator = false;
 
 
 function clearDisplay() {
