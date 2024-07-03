@@ -1,6 +1,6 @@
-let number = null;
+let number = "";
 let operation = null;
-let secondNum = null;
+let secondNum = "";
 let canAddNum = true;
 let display = document.querySelector(".display");
 let buttons = document.querySelectorAll('button');
@@ -9,27 +9,31 @@ let buttons = document.querySelectorAll('button');
 clearDisplay();
 
 let canAddOperator = false;
+
 buttons.forEach(button => {
     button.addEventListener("click", function handleClick(event) {
         button = event.target.innerHTML;
-        if (button == "CLEAR") {
-            clearDisplay();
-        } else if (button == "=") {
-            if (number != null && secondNum != null && operation != null) {
+        let currentNum = number;
+
+        // TODO: refactor this tomorrow
+        if (Number(button) >= 0) {
+            if (currentNum == number) {
+                number += button;
+            } else{
+                secondNum += button;
+            }
+        }
+
+        if (button == "+") {
+            if (currentNum == secondNum) {
                 operate(number, secondNum, operation);
             } else {
-                console.log("invalid input");
+                currentNum = secondNum
             }
-        } else if (button == "*" || button == "/" || button == "+" || button == "-") {
-            if (canAddOperator) {
-                populateDisplay(button);
-                canAddOperator = false;
-            } else {
-                console.log("please enter number");
-            }
-        } else {
-            populateDisplay(button);
-            canAddOperator = true;
+        }
+
+        if (button == "=") {
+            currentNum = firstNum;
         }
     });
 })
