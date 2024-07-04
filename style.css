@@ -1,69 +1,54 @@
-* {
+*, *::before, *::after {
     box-sizing: border-box;
+    font-family: Gotham Rounded, sans-serif;
+    font-weight: normal;
+  }
+  
+  body {
     padding: 0;
     margin: 0;
-}
-
-body {
-    background-color: gray;
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(197, 197, 197);
+    background: url("images/math.gif") no-repeat center;
+    background-size: cover;
+  }
+  
+  .calculator {
+    display: grid;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-
-main {
-    background-color: black;
-    color: #fff;
-    width: 400px;
-    height: 590px;
-    padding: 10px;
-}
-
-.display {
-    background-color: rgb(83, 83, 83);
-    padding: 10px;
-    height: 2.5rem;
-    margin-bottom: 10px;
-}
-
-.buttons {
-    margin-top: 10px;
+    align-content: center;
+    min-height: 100vh;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+  }
+  
+  .calculator > button {
+    cursor: pointer;
+    font-size: 2rem;
+    border: 1px solid white;
+    outline: none;
+    background-color: rgba(255, 255, 255, .75);
+  }
+  
+  .calculator > button:hover {
+    background-color: rgba(255, 255, 255, .9);
+  }
+  
+  .span-two {
+    grid-column: span 2;
+  }
+  
+  .display {
+    grid-column: 1 / -1;
+    background-color: rgba(0, 0, 0, .75);
     display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
     flex-direction: column;
-}
-
-.btn {
-    border: none;
     padding: 10px;
-}
-
-.numbers, .operators {
-    margin-top: 10px;
-    display: flex;
-    gap: 5px;
-    height: 200px;
-    flex-wrap: wrap;
-}
-
-.numbers button{
-flex-grow: 1;
-width: 100px;
-}
-
-.operators button {
-flex: 1;
-height: 95%;
-}
-
-.enter-btn {
-    display: flex;
-}
-
-.btn-enter {
-    flex: 1;
-}
-
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+  
+  .display .number {
+    color: white;
+    font-size: 2.5rem;
+  }
