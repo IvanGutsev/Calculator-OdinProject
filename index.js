@@ -11,6 +11,10 @@ let operator = undefined;
 let currentNum = "one";
 let displayNumber = "";
 
+allClearBtn.addEventListener("click", () => {
+    clear();
+})
+
 numberButtons.forEach(button => {
     button.addEventListener("click", () => {
         let btn = button.innerText;
@@ -74,6 +78,13 @@ function operate(numOne, numTwo, operator) {
         console.log(num1);
         console.log(num2);
         console.log(operator);
+}
+
+function clear() {
+    num1 = "";
+    num2 = "";
+    operator = undefined;
+    updateDisplay(display, num1);
 }
 
 function updateDisplay(display, num) {
