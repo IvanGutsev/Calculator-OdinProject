@@ -10,6 +10,12 @@ let num2 = "";
 let operator = undefined;
 let currentNum = "one";
 let displayNumber = "";
+let readyForNewOperand = false;
+
+equalsBtn.addEventListener("click", () => {
+    operate(num1, num2, operator);
+    readyForNewOperand = true;
+})
 
 allClearBtn.addEventListener("click", () => {
     clear();
@@ -68,23 +74,22 @@ function operate(numOne, numTwo, operator) {
             break;
         default:
             return;
-        }
-        num1 = computation.toString();
-        displayNumber = num1;
-        num2 = '';
-        currentNum = "one";
-        updateDisplay(display, displayNumber);
-
-        console.log(num1);
-        console.log(num2);
-        console.log(operator);
+    }
+    num1 = computation.toString();
+    displayNumber = num1;
+    num2 = '';
+    currentNum = "one";
+    operator = undefined; // Reset the operator after computation
+    updateDisplay(display, displayNumber);
 }
 
 function clear() {
     num1 = "";
     num2 = "";
     operator = undefined;
-    updateDisplay(display, num1);
+    displayNumber = "";
+    currentNum = "one";
+    updateDisplay(display, displayNumber);
 }
 
 function updateDisplay(display, num) {
@@ -92,26 +97,29 @@ function updateDisplay(display, num) {
 }
 
 function chooseOperation(operation) {
-    if (operator && num2 !== "") {
-        console.log("will operate ");
+    if (num1 === "") return; // Do nothing if no number is input yet
+    if (num2 !== "") {
         operate(num1, num2, operator);
-    } 
-    else {
+        operator = operation;
+        readyForNewOperand = true;
+    } else if (readyForNewOperand) {
+        operator = operation; // Remember the new operation
+        currentNum = "two";
+        readyForNewOperand = false;
+    } else {
         operator = operation;
         currentNum = "two";
     }
-
-    console.log(operator);
 }
 
 function appendNumber(num) {
-    // we want to allow only one . (we dont want something like 5.55.55 because it doesnt make sense mathematically to say "5 point 55 point 55") 
-    if (num === '.' && display.innerText.includes('.')) return;
-    // if currentNum = one -> append to num1
-    // else to num2
-    // if you still can't do it it wont hurt to ask the TOP discord for help
-
-    // decide to which number to add num
+    if (num === '.' && displayNumber.includes('.')) return; // Allow only one decimal point
+    if (readyForNewOperand) {
+        num1 = displayNumber; // Reset the display to new operand after computation
+        num2 = "";
+        currentNum = "two";
+        readyForNewOperand = false;
+    }
     if (currentNum === "one") {
         num1 = num1.toString() + num.toString();
         displayNumber = num1;
